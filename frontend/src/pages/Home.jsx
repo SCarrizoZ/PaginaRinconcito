@@ -3,7 +3,7 @@ import React, {useContext} from 'react'
 import { ProductContext } from '../context/ProductContext'
 // import components
 import {Product} from "../components/Product"
-
+import { Hero } from '../components/Hero';
 export  function Home() {
   // get products from product context
   const {products}  = useContext(ProductContext);
@@ -15,7 +15,8 @@ export  function Home() {
   //console.log(filteredProducts)
   return (
     
-    <div className='mt-10'>
+    <div className=''>
+      <Hero/>
       {/* DISEÑO DE PRODUCTOS */}
       <section className='py-16'>
         <div className="container mx-auto">
