@@ -8,7 +8,7 @@ export const ProductDetails = () => {
   const {id} = useParams();
   const {products} = useContext(ProductContext)
   const {addToCart} = useContext(CartContext)
-  
+  console.log(products)
   // get product by id
   const product = products.find((item)=>{
     return item.id === parseInt(id);
@@ -18,9 +18,9 @@ export const ProductDetails = () => {
   }
   const {title,price,description,image} = product
 
-  console.log(product)
+  // console.log(product)
   return (
-    <section className='pt-32 pb-12 lg:py-32 h-screen flex items-center'>
+    <section className='pt-32 pb-12 lg:py-32 h-screen fle flex-col items-center'>
       <div className="container mx-auto px-4">
         <div className='flex flex-col lg:flex-row items-center '>
           {/*Image */}
@@ -28,15 +28,22 @@ export const ProductDetails = () => {
             <img className='max-w-[200px] lg:max-w-sm' src={image} alt="" />
           </div>
           {/*Text */}
-          <div className='flex-1 text-center lg:text-left'>
+          <div className='flex-1 text-center justify-center lg:text-left'>
             
             <h1 className='text-[26px] font-medium mb-2 max-w-[450px] mx-auto'>{title}</h1>
             <div className='text-xl text-red-500 font-medium'></div>
             <p className='mb-8'>{description}</p>
-            <button className="bg-red-500 py-4 px-8 text-white flex mb-20" onClick={()=>{addToCart(product,product.id)}}>Añadir al carrito de compras</button>
+            <div className='flex justify-center'>
+              <button className="bg-red-500 py-4 px-8 text-white flex mb-20" onClick={()=>{addToCart(product,product.id)}}>Añadir al carrito de compras</button>
+
+            </div>
           </div>
         </div>
       </div>
+      <div>Productos similares --- CATEGORÍA</div>
+      <div>Productos relacionados --- MACROCATEGORÍA</div>
+      
     </section>
+    
   )
 }

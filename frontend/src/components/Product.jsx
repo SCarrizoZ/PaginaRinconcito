@@ -5,11 +5,24 @@ import { Link } from "react-router-dom"
 import { BsPlus, BsEyeFill } from "react-icons/bs"
 //Context
 import { CartContext } from '../context/CartContext'
-
+import {formatPrice} from '../utils/utils.js'
 export function Product({ product }) {
   const { addToCart } = useContext(CartContext)
   // destructure product's properties
-  const { id, image, category, title, price, user, num_reviews, count_in_stock, created } = product
+  const { id, 
+          image, 
+          subcategoria=product.category, 
+          nombre = product.title, 
+          precio=product.price, 
+           } = product
+  // const { id,
+  //         nombre=product.attributes.nombre,
+  //         precio=product.attributes.precio,
+  //         image= product.attributes.portada.data.attributes.url,
+  //         subcategoria=product.attributes.subcategoria.data.attributes.nombre
+  //       } = product
+  // console.log(attributes)
+  // const { precio, portada,subcategoria,nombre} = attributes
   return (
     //<div className='w-full h-[300px] bg-pink-200 mb-4' key={id}> {title}</div>
     <div className='rounded-lg border border-[#e4e4e4]'>
@@ -39,12 +52,12 @@ export function Product({ product }) {
       </div>
       {/**Category, title and price BOTTOM*/}
       <div className='p-4'>
-        <div className='text-sm text-gray-500 capitalize'>{category}</div>
+        <div className='text-sm text-gray-500 capitalize'>{subcategoria}</div>
         <Link to={`/product/${id}`}>
-          <h2 className='font-semibold mb-1'>{title}</h2>
+          <h2 className='font-semibold mb-1'>{nombre}</h2>
         </Link>
 
-        <div className='font-semibold'>${price}</div>
+        <div className='font-semibold'>${formatPrice(precio)}</div>
       </div>
 
     </div>

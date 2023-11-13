@@ -5,9 +5,12 @@ import { IoMdRemove,IoMdAdd, IoMdClose } from 'react-icons/io'
 import {RiCloseCircleLine} from 'react-icons/ri'
 // Context
 import { CartContext} from '../context/CartContext';
+// utils format function
+import {formatPrice} from '../utils/utils.js'
 export  function CartItem({item}) {
   const {id,image,category,title,price,user,num_reviews,count_in_stock,created,amount} = item;
   const {removeFromCart, increaseQuantity,decreaseQuantity} = useContext(CartContext);
+  const totalPorObjeto = price * item.amount;
   return (
     <div className='flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500'>
       <div className='w-full min-h-[150px] flex items-center gap-x-4'>
@@ -36,8 +39,8 @@ export  function CartItem({item}) {
             <div className='h-full flex justify-center items-center px-2'>{amount}</div>
             <div onClick={()=>increaseQuantity(id)} className='flex-1 h-full flex justify-center items-center cursor-pointer border-l'><IoMdAdd/></div>
           </div>
-          <div className='flex flex-1 justify-around items-center'>${price}</div>
-          <div className='flex-1 flex justify-end items-center text-primary font-medium'>{`$ ${parseFloat(item.price * amount).toFixed(2)}`}</div>
+          <div className='flex flex-1 justify-around items-center'>${formatPrice(price)}</div>
+          <div className='flex-1 flex justify-end items-center text-primary font-medium'>{`$ ${formatPrice(totalPorObjeto)}`}</div>
         </div>
         </div>
       </div>

@@ -8,11 +8,15 @@ export  function Home() {
   // get products from product context
   const {products}  = useContext(ProductContext);
   //console.log(products)
-  const filteredProducts = products.filter(item=>{
-    return item.category === "Guitarras" || item.category === "women's clothing"
-  })
-
+  // const filteredProducts = products.filter(item=>{
+  //   // return item.category === "Guitarras" || item.category === "women's clothing"
+  //   return true
+  // })
+  
   //console.log(filteredProducts)
+  // console.log(products.data)
+  // const productsData = products.data
+  // console.log(productsData instanceof Array)
   return (
     
     <div className=''>
@@ -21,12 +25,13 @@ export  function Home() {
       <section className='py-16'>
         <div className="container mx-auto">
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none'>
-            {filteredProducts.map(product=>{
+            {products.map(product=>{
               // return un conjunto de divs. dentro debe haber el producto con la propiedad title
               return <Product key={product.id} product={product}/>
 
               
             })}
+            
           </div>
         </div>
       </section>

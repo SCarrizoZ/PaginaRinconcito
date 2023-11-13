@@ -9,7 +9,8 @@ import {CartItem} from "../components/CartItem"
 //Context
 import {SidebarContext} from "../context/SidebarContext"
 import { CartContext } from '../context/CartContext'
-
+// utils format function
+import {formatPrice} from '../utils/utils.js'
 export  function Sidebar() {
   const {isOpen, setIsOpen,handleClose}=useContext(SidebarContext)
   const {cart,setCart,removeFromCart, clearAllItems,total,setTotal}=useContext(CartContext)
@@ -32,7 +33,7 @@ export  function Sidebar() {
         <div className='flex w-full justify-between items-center '>
           {/*Subtotal */}
           <div className='uppercase font-semibold'>
-            <span className='mr-2'>Subtotal:</span>$ {parseFloat(total).toFixed(2)}
+            <span className='mr-2'>Subtotal:</span>{formatPrice(total)}
           </div >
           {/*Clear icon */}
           <div className='bg-red-500 w-12 h-12 flex justify-center items-center text-xl py-4 cursor-pointer transition-all text-white '
